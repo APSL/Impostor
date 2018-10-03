@@ -8,6 +8,8 @@ from distutils.command.install import INSTALL_SCHEMES
 import os
 import sys
 
+from setuptools import find_packages
+
 
 class OsxInstallData(install_data):
     # On MacOS, the platform-specific lib dir is /System/Library/Framework/Python/.../
@@ -84,7 +86,7 @@ setup(
     long_description='Django app allowing staff with their credentials to login as other users.',
     license='MIT License',
     platforms=['any'],
-    packages=packages,
+    packages=find_packages(exclude=['tests*']),
     cmdclass=cmdclasses,
     data_files=data_files,
     classifiers=['Development Status :: 5 - Production/Stable',

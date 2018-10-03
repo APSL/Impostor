@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: Impostor
+Version: 1.0.2
+Summary: Staff can login as a different user.
+Home-page: https://github.com/samastur/Impostor/
+Author: Marko Samastur
+Author-email: markos@gaivo.net
+License: MIT License
+Description: Django app allowing staff with their credentials to login as other users.
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities

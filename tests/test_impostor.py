@@ -6,8 +6,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-from .models import ImpostorLog
-from .forms import BigAuthenticationForm
+from impostor.models import ImpostorLog
+from impostor.forms import BigAuthenticationForm
 
 
 admin_username = 'real_test_admin'

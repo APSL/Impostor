@@ -38,7 +38,7 @@ class AuthBackend:
     supports_object_permissions = False
     supports_inactive_user = False
 
-    def authenticate(self, request, username=None, password=None, *kwargs):
+    def authenticate(self, request=None, username=None, password=None, *kwargs):
         auth_user = None
         try:
             # Admin logging as user?

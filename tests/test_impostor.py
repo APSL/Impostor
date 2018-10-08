@@ -33,32 +33,32 @@ class TestImpostorLogin(TestCase):
         u = authenticate(username=user_username, password=user_pass)
         real_user = User.objects.get(username=user_username)
 
-        self.failUnlessEqual(u, real_user)
+        self.assertEqual(u, real_user)
 
     def test_login_admin(self):
         u = authenticate(username=admin_username, password=admin_pass)
         real_admin = User.objects.get(username=admin_username)
 
-        self.failUnlessEqual(u, real_admin)
+        self.assertEqual(u, real_admin)
 
     def test_login_admin_as_user(self):
         no_logs_entries = len(ImpostorLog.objects.all())
-        self.failUnlessEqual(no_logs_entries, 0)
+        self.assertEqual(no_logs_entries, 0)
 
         u = authenticate(username="%s as %s" % (admin_username, user_username), password=admin_pass)
         real_user = User.objects.get(username=user_username)
 
-        self.failUnlessEqual(u, real_user)
+        self.assertEqual(u, real_user)
 
         # Check if logs contain an entry now
         logs_entries = ImpostorLog.objects.all()
-        self.failUnlessEqual(len(logs_entries), 1)
+        self.assertEqual(len(logs_entries), 1)
 
         entry = logs_entries[0]
         today = datetime.date.today()
         lin = entry.logged_in
-        self.failUnlessEqual(entry.impostor.username, admin_username)
-        self.failUnlessEqual(entry.imposted_as.username, user_username)
+        self.assertEqual(entry.impostor.username, admin_username)
+        self.assertEqual(entry.imposted_as.username, user_username)
         self.assertTrue(lin.year == today.year and lin.month == today.month and lin.day == today.day)
         self.assertTrue(entry.token and entry.token.strip() != "")
 
@@ -66,21 +66,21 @@ class TestImpostorLogin(TestCase):
         u = authenticate(username="%s as %s" % (admin_username, user_email), password=admin_pass)
         real_user = User.objects.get(email=user_email)
 
-        self.failUnlessEqual(u, real_user)
+        self.assertEqual(u, real_user)
 
     def test_form(self):
         initial = {'username': user_username, 'password': user_pass}
         form = BigAuthenticationForm(data=initial)
         self.assertTrue(form.is_valid())
-        self.failUnlessEqual(form.cleaned_data['username'], user_username)
-        self.failUnlessEqual(form.cleaned_data['password'], user_pass)
+        self.assertEqual(form.cleaned_data['username'], user_username)
+        self.assertEqual(form.cleaned_data['password'], user_pass)
 
         new_uname = "%s as %s" % (admin_username, user_username)  # Longer than contrib.auth default of 30 chars
         initial = {'username': new_uname, 'password': admin_pass}
         form = BigAuthenticationForm(data=initial)
         self.assertTrue(form.is_valid())
-        self.failUnlessEqual(form.cleaned_data['username'], new_uname)
-        self.failUnlessEqual(form.cleaned_data['password'], admin_pass)
+        self.assertEqual(form.cleaned_data['username'], new_uname)
+        self.assertEqual(form.cleaned_data['password'], admin_pass)
 
         del initial['password']
         form = BigAuthenticationForm(data=initial)

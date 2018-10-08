@@ -1,0 +1,5 @@
+
+1.0.3
+
+- Created changelog
+- Adapted to work with Django 1.7-2.1 and python2.7/3.5+

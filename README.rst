@@ -9,18 +9,19 @@ interface to everyone with an access to ImpostorLog interface. However it is
 not possible to delete log entries through admin interface to make covering
 tracks more difficult.
 
-Impostor was tested with Django 1.4 and 1.5. It might work with
-other versions too. It also depends on Django's authentication system and
-assumes you use its usernames for authentication.
+This version was tested with **Django from 1.7 to 2.1**. It might work with other versions
+too. It also depends on Django's authentication system and assumes you use its
+usernames for authentication.
 
-Impostor is a MMM project (http://mmm.si) developed by Marko Samastur
+Impostor is fork of a project with the same name from https://github.com/samastur/Impostor.
+Originally it was a MMM project (http://mmm.si) developed by Marko Samastur
 (markos@gaivo.net) licensed under MIT license.
 
 
 Installation
 ------------
-Impostor won't work, if you are not using Django's auth system. It currently
-also assumes that you use username to identify your users and not something
+Impostor only work if you use Django's auth system. It currently
+also assumes that you use usernames to identify your users and not something
 else (like email).
 
 First install impostor app files as you would any other Django app (e.g. ``pip
@@ -41,7 +42,7 @@ lines to your settings:
 
 Also add 'impostor' app to INSTALLED_APPS.
 
-Run 'python manage.py syncdb' to create needed table and you are set.
+Run 'python manage.py migrate' to create needed table and you are set.
 
 
 Usage
@@ -76,8 +77,8 @@ Also use IMPOSTOR_GROUP cautiously because it still allows impersonating
 somebody with different set of permissions (and hence security breach).
 
 
-TODO/Wishlist
--------------
+TODO/Wishlist (old)
+-------------------
 - add support for log in with emails
 - record when impostor logs out*
 - mark "hijacked" requests (so impostor can tell when he is using website as
@@ -89,6 +90,6 @@ TODO/Wishlist
 [*] This feature depends on django auth signals coming in Django 1.3, which I am not using yet.
 
 
-Known bugs
-----------
+Known bugs (old)
+----------------
 - proper support for logging in with emails (currently broken)

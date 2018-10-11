@@ -2,3 +2,5 @@
 .idea
 .tox
 db.sqlite3
+Pipfile
+Pipfile.lock
